@@ -16,7 +16,7 @@ const SimpleSolution = () => {
           intuitive interface to improve productivity.
         </p>
         <Button
-          className="shadow-[0px_25px_25px_-10px_rgba(63, 91, 194, 0.25)] bg-[#5175FF] text-white"
+          className="shadow-[0px_25px_25px_-10px_rgba(63, 91, 194, 0.25)] bg-[#5175FF] text-white hover:bg-[#829CFF]"
           asChild
         >
           <Link href={"/sign-up"}>Get Started</Link>
