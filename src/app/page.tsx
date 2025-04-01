@@ -1,6 +1,9 @@
+import SimpleSolution from "@/components/simple-solution";
 
 export default function Home() {
   return (
-    <main className="">Home Page</main>
- );
+    <main className="">
+      <SimpleSolution />
+    </main>
+  );
 }
