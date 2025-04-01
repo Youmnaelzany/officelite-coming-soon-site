@@ -9,6 +9,13 @@ interface TimeCount {
   seconds: string;
 }
 
+interface TimerProps {
+  launchDate: string;
+  bgColor?: string;
+  textColor?: string;
+  labelColor?: string;
+}
+
 const getTimeLeft = (expiry: string): TimeCount => {
   let days = "0";
   let hours = "0";
@@ -44,38 +51,81 @@ const getTimeLeft = (expiry: string): TimeCount => {
   };
 };
 
-const Timer = ({ launchDate }: { launchDate: string }) => {
+const Timer = ({
+  launchDate,
+  bgColor = "#333950",
+  textColor = "white",
+  labelColor = "white/50",
+}: TimerProps) => {
   const [timeLeft, setTimeLeft] = useState<TimeCount>(getTimeLeft(launchDate));
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTimeLeft(getTimeLeft(launchDate));
     }, 1000);
+
+    return () => clearInterval(interval); // Cleanup interval on unmount
   }, [launchDate]);
 
   return (
     <div className="flex items-center justify-center gap-[0.81rem]">
-      <span className="flex w-[4.5rem] flex-col items-center justify-center rounded-lg bg-[#333950] py-3 text-[2rem] leading-12 font-bold text-white sm:text-[3.5rem]">
+      <span
+        className="flex h-[5.75rem] w-[4.5rem] flex-col items-center justify-center rounded-lg text-[2rem] leading-12 font-bold sm:h-32 sm:w-[6.25rem] sm:text-[3.5rem]"
+        style={{
+          backgroundColor: bgColor,
+          color: textColor,
+        }}
+      >
         {timeLeft.days}
-        <small className="text-xs font-bold text-white/50 sm:text-base sm:leading-7">
+        <small
+          className="text-xs font-bold sm:text-base sm:leading-7"
+          style={{ color: labelColor }}
+        >
           Days
         </small>
       </span>
-      <span className="flex w-[4.5rem] flex-col items-center justify-center rounded-lg bg-[#333950] py-3 text-[2rem] leading-12 font-bold text-white sm:text-[3.5rem]">
+      <span
+        className="flex h-[5.75rem] w-[4.5rem] flex-col items-center justify-center rounded-lg text-[2rem] leading-12 font-bold sm:h-32 sm:w-[6.25rem] sm:text-[3.5rem]"
+        style={{
+          backgroundColor: bgColor,
+          color: textColor,
+        }}
+      >
         {timeLeft.hours}
-        <small className="text-xs font-bold text-white/50 sm:text-base sm:leading-7">
+        <small
+          className="text-xs font-bold sm:text-base sm:leading-7"
+          style={{ color: labelColor }}
+        >
           Hours
         </small>
       </span>
-      <span className="flex w-[4.5rem] flex-col items-center justify-center rounded-lg bg-[#333950] py-3 text-[2rem] leading-12 font-bold text-white sm:text-[3.5rem]">
+      <span
+        className="flex h-[5.75rem] w-[4.5rem] flex-col items-center justify-center rounded-lg text-[2rem] leading-12 font-bold sm:h-32 sm:w-[6.25rem] sm:text-[3.5rem]"
+        style={{
+          backgroundColor: bgColor,
+          color: textColor,
+        }}
+      >
         {timeLeft.minutes}
-        <small className="text-xs font-bold text-white/50 sm:text-base sm:leading-7">
+        <small
+          className="text-xs font-bold sm:text-base sm:leading-7"
+          style={{ color: labelColor }}
+        >
           Minutes
         </small>
       </span>
-      <span className="flex w-[4.5rem] flex-col items-center justify-center rounded-lg bg-[#333950] py-3 text-[2rem] leading-12 font-bold text-white sm:text-[3.5rem]">
+      <span
+        className="flex h-[5.75rem] w-[4.5rem] flex-col items-center justify-center rounded-lg text-[2rem] leading-12 font-bold sm:h-32 sm:w-[6.25rem] sm:text-[3.5rem]"
+        style={{
+          backgroundColor: bgColor,
+          color: textColor,
+        }}
+      >
         {timeLeft.seconds}
-        <small className="text-xs font-bold text-white/50 sm:text-base sm:leading-7">
+        <small
+          className="text-xs font-bold sm:text-base sm:leading-7"
+          style={{ color: labelColor }}
+        >
           Seconds
         </small>
       </span>
